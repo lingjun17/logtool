@@ -1,4 +1,4 @@
-module LogTool
+module logtool
 
 go 1.12
 
