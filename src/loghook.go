@@ -10,7 +10,7 @@ var formatter logrus.Formatter
 
 type LoggerWrapper struct {
 	oldFormatter logrus.Formatter
-	hook 		*Hook
+	hook         *Hook
 }
 
 func (w *LoggerWrapper) Format(entry *logrus.Entry) ([]byte, error) {
@@ -25,11 +25,11 @@ func newFormatter(old logrus.Formatter, hook *Hook) logrus.Formatter {
 }
 
 type Hook struct {
-	Field        string
-	Skip         int
-	levels       []logrus.Level
+	Field  string
+	Skip   int
+	levels []logrus.Level
 	//SkipPrefixes []string
-	Formatter    func(file, function string, line int) string
+	Formatter func(file, function string, line int) string
 }
 
 func (hook *Hook) Levels() []logrus.Level {
@@ -80,9 +80,9 @@ func (hook *Hook) findCaller() (string, string, int) {
 
 func NewHook(levels ...logrus.Level) *Hook {
 	hook := Hook{
-		Field:        "_source",
-		Skip:         8,
-		levels:       levels,
+		Field:  "_source",
+		Skip:   9,
+		levels: levels,
 		//SkipPrefixes: []string{"logrus/", "logrus@"},
 		Formatter: func(file, function string, line int) string {
 			return fmt.Sprintf("%s:%d func:%s", file, line, function)

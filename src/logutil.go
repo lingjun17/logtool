@@ -5,19 +5,21 @@ import (
 	"time"
 )
 
-var logger = logrus.New()
+var Logger = logrus.New()
 
-func GetLogger(logPath string, logFileName string, maxAge time.Duration, rotateTime time.Duration) *logrus.Logger{
+func Init(logPath string, logFileName string, maxAge time.Duration, rotateTime time.Duration) {
 
 	hook := NewHook()
-	logger.AddHook(hook)
+	Logger.AddHook(hook)
 
-	ConfigLocalFilesystemLogger(logger, logPath, logFileName, maxAge, rotateTime)
+	ConfigLocalFilesystemLogger(Logger, logPath, logFileName, maxAge, rotateTime)
 	//logger.SetOutput(os.Stdout)
-	logger.SetFormatter(&logrus.TextFormatter{
-		FullTimestamp: true,
+	Logger.SetFormatter(&logrus.TextFormatter{
+		FullTimestamp:   true,
 		TimestampFormat: time.RFC3339Nano,
 	})
+}
 
-	return logger
+func GetLogger() *logrus.Logger {
+	return Logger
 }
