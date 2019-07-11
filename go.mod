@@ -1,4 +1,4 @@
-module logtool
+module github.com/verylucky/logtool
 
 go 1.12
 
