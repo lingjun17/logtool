@@ -1,14 +1,13 @@
 package tests
 
 import (
-	"LogTool/src"
+	"github.com/verylucky/logtool"
 	"testing"
 	"time"
 )
 
 func Test_LogTool_1(t *testing.T) {
-	log := logtool.GetLogger("../log", "testlog", 7*24*time.Hour, time.Minute)
-	log.Info("test log tool")
+	logtool.Init("../log", "testlog", 7*24*time.Hour, time.Minute)
+	logtool.GetLogger().Info("test log tool")
 	t.Log("passed test")
 }
-
